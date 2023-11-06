@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseNotFound, Http404
+from django.http import HttpResponseNotFound, Http404, JsonResponse
 from django.urls import reverse
 from datetime import date
 from .models import Course, Category
+import json
 
 data={
+   
     'programlama': 'Programlama kategorisine ait kurslar',
-    'programming': 'Programlama kategorisine ait kurslar',
     'web-gelistirme':'Web geliştirme kategorisine ait kurslar',
-    'mobil-uygulamalar': 'Mobil geliştirme kategorisine ait kurslar'
+    'mobil-gelistirme': 'Mobil geliştirme kategorisine ait kurslar'
 }
 
 db={
@@ -43,9 +44,9 @@ db={
     ],
     'categories':
     [
-       {'id':1, 'name': 'programlama', 'slug':'programlama'},
+       {'id':1, 'name': 'programlama', 'slug':'programming'},
        {'id':2, 'name': 'web geliştirme', 'slug':'web-gelistirme'},
-       {'id':3, 'name': 'mobil geliştirme', 'slug':'mobil-uygulamalar'},
+       {'id':3, 'name': 'mobil geliştirme', 'slug':'mobil-gelistirme'},
         
     ]
 }
@@ -67,14 +68,14 @@ def index(request):
     
 
 
-def details(request, course_id):
-    # try:
-    #     course=Course.objects.get(pk=course_id)
-    # except:
-    #     raise Http404()
+def details(request, slug):
 
-    course = get_object_or_404(Course, pk=course_id)
+    print(slug)
+  
+    # course=Course.objects.get(slug=slug)
+   
 
+    course = get_object_or_404(Course, slug=slug)
 
     context={
         'course': course
