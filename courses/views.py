@@ -1,14 +1,14 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseNotFound, Http404
 from django.urls import reverse
 from datetime import date
-# Create your views here.
+from .models import Course, Category
 
 data={
     'programlama': 'Programlama kategorisine ait kurslar',
     'programming': 'Programlama kategorisine ait kurslar',
     'web-gelistirme':'Web geliştirme kategorisine ait kurslar',
-    'mobil-gelistirme': 'Mobil geliştirme kategorisine ait kurslar'
+    'mobil-uygulamalar': 'Mobil geliştirme kategorisine ait kurslar'
 }
 
 db={
@@ -45,15 +45,15 @@ db={
     [
        {'id':1, 'name': 'programlama', 'slug':'programlama'},
        {'id':2, 'name': 'web geliştirme', 'slug':'web-gelistirme'},
-       {'id':3, 'name': 'mobil geliştirme', 'slug':'mobil-gelistirme'},
+       {'id':3, 'name': 'mobil geliştirme', 'slug':'mobil-uygulamalar'},
         
     ]
 }
 
 def index(request):
     #list comphension
-    courses=[course for course in db['courses'] if course['isActive']==True]
-    categories=db['categories']
+    courses=Course.objects.filter(isActive=1)
+    categories=Category.objects.all()
 
     # for course in db['courses']:
     #     if course['isActive']==True:
@@ -67,9 +67,20 @@ def index(request):
     
 
 
-def details(request, course_name):
-    return HttpResponse(f'{str.capitalize(course_name)} Detay')
-    return HttpResponse('Mobile Uygulama Kursları')
+def details(request, course_id):
+    # try:
+    #     course=Course.objects.get(pk=course_id)
+    # except:
+    #     raise Http404()
+
+    course = get_object_or_404(Course, pk=course_id)
+
+
+    context={
+        'course': course
+    }
+    return render(request, 'courses/details.html',context)
+  
 
 
 

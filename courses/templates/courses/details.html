@@ -1,0 +1,24 @@
+{% extends 'layout.html' %} 
+{% load static %}
+{% block title %} Kurslar {% endblock title %}
+
+
+{% block page_title %}
+  {{course.title}}
+{% endblock page_title %}
+  
+
+{%block content %}
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-3">
+      <img class="img-fluid rounded" src="{% static 'img/'|add:course.imageUrl %}" alt="{{course.title}}">
+
+    </div>
+    <div class="col-9">      
+     <h1 class="h3">{{course.title}}</h1>
+     <p>{{course.description}}</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}
