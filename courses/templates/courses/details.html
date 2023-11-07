@@ -12,7 +12,7 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col-3">
-      <img class="img-fluid rounded" src="{% static 'img/'|add:course.imageUrl %}" alt="{{course.title}}">
+      <img class="img-fluid rounded" src="{% get_media_prefix %}|add:course.imageUrl " alt="{{course.title}}">
 
     </div>
     <div class="col-9">      

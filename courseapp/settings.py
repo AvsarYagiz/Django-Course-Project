@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-r4k@2mpd5b3p1^7p&ntwhk!@v%+4+03ph8rus9mwnlgi9hpsh3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',  # rest_framework etkinleştirdim.
+    'corsheaders', # corsheaders etkinleştirdim.
 ]
 
 MIDDLEWARE = [
@@ -49,7 +51,23 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+    'http://192.168.1.66:3000',
+    'http://192.168.1.200:3000',
+    'http://127.0.0.1:3000',
+    'http://95.70.201.96:39139',
+    'http://192.168.1.201:3000',
+
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 ROOT_URLCONF = 'courseapp.urls'
 
@@ -120,7 +138,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS=[
+STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 

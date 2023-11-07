@@ -3,6 +3,8 @@ from django.http import HttpResponseNotFound, Http404, JsonResponse
 from django.urls import reverse
 from datetime import date
 from .models import Course, Category
+from rest_framework import generics
+from .serializers import CourseSerializer, CategorySerializer
 import json
 
 data={
@@ -60,6 +62,8 @@ def index(request):
     #     if course['isActive']==True:
     #         courses.append(course)
 
+    return JsonResponse({})
+
 
     return render(request, 'courses/index.html' ,{
         'categories':categories,
@@ -68,19 +72,21 @@ def index(request):
     
 
 
-def details(request, slug):
+def details(request):
 
-    print(slug)
+
   
     # course=Course.objects.get(slug=slug)
    
 
-    course = get_object_or_404(Course, slug=slug)
+    course = get_object_or_404(Course)
 
     context={
         'course': course
     }
-    return render(request, 'courses/details.html',context)
+    return JsonResponse(context)
+
+
   
 
 
@@ -106,3 +112,11 @@ def getCoursesByCategoryId(request, category_id):
     redirect_url=reverse('courses_by_category', args=[category_name])
 
     return redirect(redirect_url)
+
+class CourseList(generics.ListCreateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+class CategoryList(generics.ListCreateAPIView):
+    queryset=Category.objects.all()
+    serializer_class=CategorySerializer
