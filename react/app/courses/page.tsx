@@ -1,6 +1,5 @@
 "use client";
 
-import NavbarItem from "../components/NavbarItem";
 import CourseItem from "../components/CourseItem";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -20,7 +19,7 @@ export default function courses() {
         setCategoriesData(response2.data);
         const response = await axios.get(
           "http://localhost:8000/courses/api/course/"
-        ); // Django API URL'sini buraya ekleyin
+        );
         setCoursesData(response.data);
       } catch (error) {
         console.error("Veri çekme hatası: ", error);
@@ -29,16 +28,14 @@ export default function courses() {
     fetchData();
   }, []);
 
-  console.log(coursesData);
   const filteredCourses = coursesData.filter((data) => {
-    // Eğer selectedCategory varsa ve kursun categories içinde selectedCategory ID'si varsa kursu döndür
     return !selectedCategory || data.categories.includes(selectedCategory);
   });
 
   return (
     <main className="flex flex-1 justify-center items-stretch py-8 text-3xl">
       <div className="w-[90%] grid grid-cols-4 justify-between gap-x-5 ">
-        <div className="flex flex-col text-base bbg-white h-fit rounded-lg py-6 px-4 dark:bg-gray-900 border-2 border-slate-700 ">
+        <div className="flex flex-col text-base bbg-white h-fit rounded-lg dark:bg-gray-900 border-2 border-slate-700 ">
           <ul>
             {categoriesData.map((data: any) => {
               return (

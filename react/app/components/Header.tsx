@@ -1,25 +1,23 @@
 import NavbarItem from "./NavbarItem";
 
 const dataNavItem = [
-    {
-        title:"Home",
-        link:"/"
-    },
-    {
-        title:"Courses",
-        link:"/courses"
-    },
-    {
-        title:"About Us",
-        link:"/aboutus"
-    },
-    {
-        title:"Contact",
-        link:"/contact"
-    },
-]
-
-
+  {
+    title: "Home",
+    link: "/",
+  },
+  {
+    title: "Courses",
+    link: "/courses",
+  },
+  {
+    title: "About Us",
+    link: "/aboutus",
+  },
+  {
+    title: "Contact",
+    link: "/contact",
+  },
+];
 
 export default function Header() {
   return (
@@ -30,15 +28,12 @@ export default function Header() {
             CourseApp
           </span>
         </a>
-       
+
         <div className="hidden w-full md:block md:w-auto" id="navbar-dropdown">
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-           {dataNavItem.map((data)=>{
-            return(
-                <NavbarItem title={data.title} link={data.link}/>
-            )
-           })}
-           
+            {dataNavItem.map((data) => {
+              return <NavbarItem title={data.title} link={data.link} />;
+            })}
           </ul>
         </div>
       </div>

@@ -17,13 +17,18 @@ export default function Footer() {
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="https://nextjs.org" className="hover:underline">
+                  <a
+                    href="https://nextjs.org"
+                    target="_blank"
+                    className="hover:underline"
+                  >
                     NextJS
                   </a>
                 </li>
                 <li>
                   <a
                     href="https://tailwindcss.com/"
+                    target="_blank"
                     className="hover:underline"
                   >
                     Tailwind CSS
@@ -37,18 +42,12 @@ export default function Footer() {
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a
-                    href="#"
-                    className="hover:underline "
-                  >
+                  <a href="#" className="hover:underline ">
                     Github
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:underline"
-                  >
+                  <a href="#" className="hover:underline">
                     Discord
                   </a>
                 </li>
@@ -77,7 +76,7 @@ export default function Footer() {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
-            <a href="https://flowbite.com/" className="hover:underline">
+            <a href="#" className="hover:underline">
               CourseApp™
             </a>
             . All Rights Reserved.

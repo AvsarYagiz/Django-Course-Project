@@ -38,12 +38,10 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(229,231,235, 0.4);
+  background: rgba(229, 231, 235, 0.1);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgba(229, 231, 235, 0.3);
 }
-
-

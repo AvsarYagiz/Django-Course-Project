@@ -4,7 +4,6 @@ import React from "react";
 type Props = {
   title: string;
   link: string;
-  
 };
 
 const NavbarItem = (props: Props) => {
