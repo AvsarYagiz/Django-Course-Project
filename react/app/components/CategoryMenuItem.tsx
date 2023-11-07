@@ -3,27 +3,14 @@ import React from "react";
 
 type Props = {
   title: string;
-  id:number;
-  setCoursesData: React.Dispatch<React.SetStateAction<never[]>>;
+  id: number;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<any>>;
 };
 
 const CategoryMenuItem = (props: Props) => {
-
-  const clickHandler=()=>{
-    if (props.id === 5) {
-      return
-    }
-    else{
-      props.setCoursesData((prev:any)=>{
-            return(
-              prev.filter((course)=>{
-                course.
-
-              })
-            )
-      })
-    }
-  }
+  const clickHandler = () => {
+    props.setSelectedCategory(props.id);
+  };
 
   return (
     <li>

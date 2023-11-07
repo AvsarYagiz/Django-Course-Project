@@ -9,6 +9,7 @@ import CategoryMenuItem from "../components/CategoryMenuItem";
 export default function courses() {
   const [coursesData, setCoursesData] = useState([]);
   const [categoriesData, setCategoriesData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -28,20 +29,31 @@ export default function courses() {
     fetchData();
   }, []);
 
-  console.log(coursesData)
+  console.log(coursesData);
+  const filteredCourses = coursesData.filter((data) => {
+    // Eğer selectedCategory varsa ve kursun categories içinde selectedCategory ID'si varsa kursu döndür
+    return !selectedCategory || data.categories.includes(selectedCategory);
+  });
 
   return (
     <main className="flex flex-1 justify-center items-stretch py-8 text-3xl">
       <div className="w-[90%] grid grid-cols-4 justify-between gap-x-5 ">
         <div className="flex flex-col text-base bbg-white h-fit rounded-lg py-6 px-4 dark:bg-gray-900 border-2 border-slate-700 ">
           <ul>
-            {categoriesData.map((data:any) => {
-              return <CategoryMenuItem id={data.id} setCoursesData={setCoursesData} key={data.id} title={data.name} />;
+            {categoriesData.map((data: any) => {
+              return (
+                <CategoryMenuItem
+                  id={data.id}
+                  setSelectedCategory={setSelectedCategory}
+                  key={data.id}
+                  title={data.name}
+                />
+              );
             })}
           </ul>
         </div>
-        <div className="col-span-3 overflow-y-auto scroll-smooth h-[520px] ">
-          {coursesData.map((data: any) => {
+        <div className="col-span-3 overflow-y-auto scroll-smooth h-[60vh]">
+          {filteredCourses.map((data: any) => {
             return (
               <CourseItem
                 key={data.title}
