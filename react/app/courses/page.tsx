@@ -8,7 +8,7 @@ import CategoryMenuItem from "../components/CategoryMenuItem";
 export default function courses() {
   const [coursesData, setCoursesData] = useState([]);
   const [categoriesData, setCategoriesData] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedCategory, setSelectedCategory] = useState(5);
 
   useEffect(() => {
     async function fetchData() {
@@ -41,6 +41,7 @@ export default function courses() {
               return (
                 <CategoryMenuItem
                   id={data.id}
+                  selectedCategory={selectedCategory}
                   setSelectedCategory={setSelectedCategory}
                   key={data.id}
                   title={data.name}

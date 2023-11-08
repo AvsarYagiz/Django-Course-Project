@@ -1,23 +1,36 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 type Props = {
   title: string;
   id: number;
+  selectedCategory: number; 
   setSelectedCategory: React.Dispatch<React.SetStateAction<any>>;
 };
 
 const CategoryMenuItem = (props: Props) => {
+  const [isSelected, setIsSelected] = useState(false);
+
+
+  useEffect(() => {
+    setIsSelected(props.id === props.selectedCategory);
+  }, [props.selectedCategory, props.id]);
+
   const clickHandler = () => {
     props.setSelectedCategory(props.id);
   };
+
+  
+  const linkClass = `flex flex-col m-5 pl-3 pr-4 text-gray-900 rounded  ${
+    isSelected ? "bg-blue-700" : "hover:text-blue-700"
+  }   dark:text-white dark:focus:text-white dark:border-gray-700 `;
 
   return (
     <li>
       <Link
         href="#"
         onClick={clickHandler}
-        className="flex flex-col m-5 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+        className={linkClass}
         aria-current="page"
       >
         {props.title}
@@ -25,4 +38,5 @@ const CategoryMenuItem = (props: Props) => {
     </li>
   );
 };
+
 export default CategoryMenuItem;
