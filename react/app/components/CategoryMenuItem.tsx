@@ -21,7 +21,7 @@ const CategoryMenuItem = (props: Props) => {
   };
 
   
-  const linkClass = `flex flex-col m-5 pl-3 pr-4 text-gray-900 rounded  ${
+  const linkClass = `flex flex-col p-5 text-gray-900 rounded  ${
     isSelected ? "bg-blue-700" : "hover:text-blue-700"
   }   dark:text-white dark:focus:text-white dark:border-gray-700 `;
 
